@@ -1,10 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
-  FlatList,
   View,
   Text,
-  Button,
   TouchableOpacity,
   TextInput,
   Switch,
@@ -13,54 +11,28 @@ import {
 import Constants from "expo-constants";
 import { Ionicons } from "@expo/vector-icons";
 import { useTodos } from "../contexts/todoContext";
-import SearchDropdown from "../components/SearchDropdown";
-//import {  } from "react-native-gesture-handler";
 
 function CreateTodo({ navigation }) {
-  //
+  // store the text when creating a new todo
   const [textInput, setTextInput] = useState();
-  const locationInptRef = useRef();
-  //
+  //flag for when or when not to include location
+  const [includeLocation, setIncludeLocation] = useState(false);
+  // todo context value
   const { addTodo } = useTodos();
-  const CLIENT_ID = "D4X15J42EBGJMB2OB4ZUUBEYOL2ILFIQAGQ4AEWENTUIIVX2";
-  const CLIENT_SECRET = "I3QCVOADLY2PAFYSG0T2DPIRKMW5PLFHF3OTUN2KM03OK4JZ";
-  const [venues, setVenues] = useState(null);
-
-  const [includeLocation, setIncludeLocation] = useState(true);
-  const [isSearching, setIsSearching] = useState();
 
   function includeLocationReminder() {
     setIncludeLocation((prev) => !prev);
   }
-
-  function onSearch(text) {
-    if (text) setIsSearching(true);
-    else setIsSearching(false);
-  }
-
-  function getLocation() {
-    const near = locationInptRef.current.value;
-    if (near.length < 6) return;
-    /*     fetch(
-      `https://api.foursquare.com/v2/venues/search?near=${near}&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=20210602`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setVenues(data.response.venues);
-      })
-      .catch((err) => console.log(err)); */
-    console.log(near);
-  }
-
+  // navigate to select location screen
   function goSelectLocation() {
     navigation.navigate("Select_Location");
   }
-
+  // update state text when typing a todo
   function updateText(e) {
     console.log(e);
     setTextInput(e);
   }
-
+  // add a todo
   function add() {
     if (textInput === "" || !textInput) {
       console.log("enter a task");
@@ -69,7 +41,7 @@ function CreateTodo({ navigation }) {
     addTodo(textInput);
     navigation.navigate("Home");
   }
-
+  // cancel creation of a new todo
   function cancel() {
     navigation.goBack();
   }
@@ -90,7 +62,6 @@ function CreateTodo({ navigation }) {
         style={styles.textInput}
         placeholder="Enter a todo"
         onChangeText={updateText}
-        //ref={textInputRef}
       />
 
       <View style={[styles.flexRow, styles.locationSelect]}>
@@ -111,8 +82,6 @@ function CreateTodo({ navigation }) {
           <Ionicons name="chevron-forward" size={24} color="black" />
         </TouchableOpacity>
       )}
-
-      {isSearching && <SearchDropdown />}
     </View>
   );
 }

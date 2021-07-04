@@ -1,32 +1,3 @@
-## South Africa's GBV hotspots (22 sep 2020)
+# Todo App
 
-Delft
-Dobsonville
-Mamelodi East
-Bloemspruit
-Tembisa
-Diepsloot
-Umlazi
-Mitchells Plain
-Empangeni
-Ikageng
-Nyanga
-Osizweni
-Inanda
-KwaMashu
-Temba
-Ntuzuma
-Khayelitsha
-Kopanong
-Kwazakhele
-Honeydew
-Alexandra
-Kraaifontein
-Moroka
-Gugulethu
-Mthatha
-Orange Farm
-Mfuleni
-Butterworth
-Plessislaer
-Bellville
+Created using react native. It's an ongoing project, everytime I learn something new and relevant in react/react native, I will add new features.

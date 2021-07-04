@@ -1,5 +1,6 @@
 import React from "react";
 import { useContext, useState } from "react";
+const uuid = require("uuid");
 
 const TodosContext = React.createContext();
 
@@ -8,20 +9,13 @@ export function useTodos() {
 }
 
 export default function TodosProvider({ children }) {
-  // initialize a state variable that holds the todos in an array
-  const [todos, setTodos] = useState([
-    {
-      id: "newnwnwn",
-      text: "cry me cry me",
-      where: { latitude: 26.6553, altitude: 24.54344 },
-      status: false,
-    },
-  ]);
+  // initialize a state variable that will hold the todos in an array
+  const [todos, setTodos] = useState([]);
   // add a todo
   function addTodo(text, where = { latitude: 26.6553, altitude: 24.54344 }) {
     if (text === "") return;
     const todo = {
-      id: text + "newnwnwn",
+      id: uuid.v4(), // generate random id for a todo
       text: text,
       where: where,
       status: false,
@@ -41,10 +35,11 @@ export default function TodosProvider({ children }) {
           status: !todo.status,
         };
       });
+
       return temp;
     });
   }
-  // delete the todo
+  // delete a todo
   function removeTodo(id) {
     setTodos((prev) => {
       const newtodos = prev.filter((x) => x.id !== id);

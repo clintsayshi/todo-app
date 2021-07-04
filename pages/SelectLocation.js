@@ -19,8 +19,6 @@ function SelectLocation({ navigation }) {
   const locationInptRef = useRef();
   //
   const { addTodo } = useTodos();
-  const CLIENT_ID = "D4X15J42EBGJMB2OB4ZUUBEYOL2ILFIQAGQ4AEWENTUIIVX2";
-  const CLIENT_SECRET = "I3QCVOADLY2PAFYSG0T2DPIRKMW5PLFHF3OTUN2KM03OK4JZ";
   const [venues, setVenues] = useState(null);
 
   const [isSearching, setIsSearching] = useState();
